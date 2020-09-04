@@ -4,11 +4,23 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.cutandpasteimage.base.BaseActivity;
+import com.example.cutandpasteimage.databinding.ActivityMainBinding;
+
+public class MainActivity extends BaseActivity<ActivityMainBinding,MainViewModel> {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public Class<MainViewModel> getViewmodel() {
+        return MainViewModel.class;
+    }
+
+    @Override
+    public int getLayoutID() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    public void setBindingViewmodel() {
+        binding.setViewmodel(viewmodel);
     }
 }
