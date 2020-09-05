@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.example.cutandpasteimage.fragment.choosebg.ChooseBackGroundViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/ivBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_left_2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/choosebg"
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/textSizeTitle" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/llbtn"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:padding="15dp"
+            android:weightSum="2"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/relativeLayout">
+            <Button
+                android:id="@+id/btnChudeanh"
+                android:layout_weight="1"
+                android:text="@string/chude"
+                android:textSize="@dimen/textSizeSmall"
+                android:background="@drawable/bg_chudeanh"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/btnAnhcuaban"
+                android:layout_weight="1"
+                android:layout_marginLeft="20dp"
+                android:textSize="@dimen/textSizeSmall"
+                android:background="@drawable/bg_anhcuaban"
+                android:text="@string/anhcuaban"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvPhoto"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:padding="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/llbtn" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -2,6 +2,9 @@ package com.example.cutandpasteimage.base;
 
 
 import android.content.res.ColorStateList;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import java.io.IOException;
+import java.io.InputStream;
 
 
 public class BingdingUtils {
@@ -24,6 +29,15 @@ public class BingdingUtils {
         Glide
                 .with(view.getContext())
                 .load(imageUrl)
+                .into(view);
+
+    }
+    @BindingAdapter({"bind:imageAssest"})
+    public static void loadImageAssestToview(ImageView view, String imageAssest) {
+        String assetPath =   imageAssest;
+        Glide.with(view.getContext())
+                .load(Uri.parse(assetPath))
+                .centerCrop()
                 .into(view);
 
     }

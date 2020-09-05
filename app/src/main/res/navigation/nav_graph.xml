@@ -13,10 +13,27 @@
         <action
             android:id="@+id/action_homeFragment_to_libraryFragment"
             app:destination="@id/libraryFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_chooseBackgroundFragment"
+            app:destination="@id/chooseBackgroundFragment" />
     </fragment>
     <fragment
         android:id="@+id/libraryFragment"
         tools:layout="@layout/frag_library"
         android:name="com.example.cutandpasteimage.fragment.library.LibraryFragment"
         android:label="LibraryFragment" />
+    <fragment
+        android:id="@+id/chooseBackgroundFragment"
+        tools:layout="@layout/frag_choose_background"
+        android:name="com.example.cutandpasteimage.fragment.choosebg.ChooseBackgroundFragment"
+        android:label="ChooseBackgroundFragment" >
+        <action
+            android:id="@+id/action_chooseBackgroundFragment_to_pasteFragment"
+            app:destination="@id/pasteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pasteFragment"
+        tools:layout="@layout/frag_paste"
+        android:name="com.example.cutandpasteimage.fragment.paste.PasteFragment"
+        android:label="PasteFragment" />
 </navigation>

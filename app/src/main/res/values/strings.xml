@@ -91,4 +91,13 @@
     <string name="changebg">Change background</string>
     <string name="yourlibrary">Your library</string>
     <string name="thuvvien">Thư viện ảnh</string>
+    <string name="choosebg">Chọn ảnh nền</string>
+    <string name="chude">Chủ đề ảnh</string>
+    <string name="anhcuaban">Ảnh của bạn</string>
+    <string name="exit">Quay lại</string>
+    <string name="ghep">Ghép ảnh</string>
+    <string name="savess">Lưu Ảnh</string>
+    <string name="anhdacat">Ảnh đã cắt</string>
+    <string name="doihinh">Đổi ảnh nền</string>
+    <string name="catmoi">Cắt ảnh mới</string>
 </resources>

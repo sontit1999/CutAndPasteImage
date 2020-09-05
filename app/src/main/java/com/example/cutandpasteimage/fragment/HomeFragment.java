@@ -60,7 +60,12 @@ public class HomeFragment extends BaseFragment<FragHomeBinding,HomeViewModel> {
                 getControler().navigate(R.id.action_homeFragment_to_libraryFragment);
             }
         });
-
+       binding.btnGhepanh.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               getControler().navigate(R.id.action_homeFragment_to_chooseBackgroundFragment);
+           }
+       });
     }
 
 }
