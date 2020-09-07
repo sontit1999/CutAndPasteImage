@@ -2,7 +2,12 @@ package com.example.cutandpasteimage.utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -12,6 +17,7 @@ import com.example.cutandpasteimage.model.PictureFacer;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class ImageFilesUtils {
@@ -121,12 +127,25 @@ public class ImageFilesUtils {
         try {
             String[] files = mContext.getAssets().list(folderPath);
             for (String name : files) {
-                pathList.add("file:///android_asset/" + folderPath + File.separator + name);
+                pathList.add( folderPath + File.separator + name);
                 Log.e("pathList item", folderPath + File.separator + name);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
         return pathList;
+    }
+    public static Drawable drawableFromAssetFilename(Context context,String filename) {
+        AssetManager assetManager = context.getAssets();
+        InputStream inputStream = null;
+        try {
+            inputStream = assetManager.open(filename);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+
+        BitmapDrawable drawable = new BitmapDrawable(context.getResources(), bitmap);
+        return drawable;
     }
 }

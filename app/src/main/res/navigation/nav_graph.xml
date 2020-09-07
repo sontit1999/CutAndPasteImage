@@ -35,5 +35,9 @@
         android:id="@+id/pasteFragment"
         tools:layout="@layout/frag_paste"
         android:name="com.example.cutandpasteimage.fragment.paste.PasteFragment"
-        android:label="PasteFragment" />
+        android:label="PasteFragment" >
+        <action
+            android:id="@+id/action_pasteFragment_to_chooseBackgroundFragment"
+            app:destination="@id/chooseBackgroundFragment" />
+    </fragment>
 </navigation>

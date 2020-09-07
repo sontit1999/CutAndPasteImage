@@ -1,3 +1,4 @@
+include ':stickerview'
 include ':sticker'
 include ':app'
 rootProject.name = "CutAndPasteImage"

@@ -1,9 +1,6 @@
 package com.example.cutandpasteimage;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.Manifest;
-import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.cutandpasteimage.base.BaseActivity;
@@ -34,7 +31,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding,MainViewModel
         // check permission
         checkPermission();
     }
-
+    public MainViewModel getMainViewModel(){
+        return viewmodel;
+    }
     private void checkPermission() {
             Dexter.withContext(this)
                     .withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)

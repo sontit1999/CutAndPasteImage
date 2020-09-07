@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import com.example.cutandpasteimage.MainActivity;
 import com.example.cutandpasteimage.R;
 import com.example.cutandpasteimage.base.BaseFragment;
 import com.example.cutandpasteimage.callback.ImageCallback;
@@ -22,6 +23,8 @@ import java.util.ArrayList;
 public class ChooseBackgroundFragment extends BaseFragment<FragChooseBackgroundBinding,ChooseBackGroundViewModel> {
     boolean isTheme = true;
     String pathImage = null;
+    boolean returnOrnot = false;
+    MainActivity activity ;
     @Override
     public Class<ChooseBackGroundViewModel> getViewmodel() {
         return ChooseBackGroundViewModel.class;
@@ -34,11 +37,18 @@ public class ChooseBackgroundFragment extends BaseFragment<FragChooseBackgroundB
 
     @Override
     public void setBindingViewmodel() {
+        // get bundle
+        Bundle bundle = getArguments();
+        returnOrnot =  bundle.getBoolean("return",false);
+
+
         binding.setViewmodel(viewmodel);
+        activity = (MainActivity) getActivity();
     }
 
     @Override
     public void ViewCreated() {
+
           setUprecyclerView();
           event();
           viewmodel.getArrPhoto().observe(this, new Observer<ArrayList<PictureFacer>>() {
@@ -53,14 +63,32 @@ public class ChooseBackgroundFragment extends BaseFragment<FragChooseBackgroundB
                   }
               }
           });
-          viewmodel.getPhotoFromAsset(getContext());
+          if(isTheme){
+              viewmodel.getPhotoFromAsset(getContext());
+              binding.btnAnhcuaban.setBackground(getResources().getDrawable(R.drawable.bg_anhcuaban));
+              binding.btnChudeanh.setBackground(getResources().getDrawable(R.drawable.bg_chudeanh));
+          }else{
+              viewmodel.getPhotoFromGallery(getActivity());
+              binding.btnAnhcuaban.setBackground(getResources().getDrawable(R.drawable.bg_chudeanh));
+              binding.btnChudeanh.setBackground(getResources().getDrawable(R.drawable.bg_anhcuaban));
+          }
           viewmodel.imageAdapter.setCallback(new ImageCallback() {
               @Override
               public void onClickImage(PictureFacer pictureFacer) {
                   Toast.makeText(getActivity(), "Click :" + pictureFacer.getPicturePath(), Toast.LENGTH_SHORT).show();
                   Bundle bundle = new Bundle();
-                  bundle.putString("path",pictureFacer.getPicturePath());
-                  getControler().navigate(R.id.action_chooseBackgroundFragment_to_pasteFragment,bundle);
+               //   bundle.putString("path",pictureFacer.getPicturePath());
+
+                  // change path bg
+                  activity.getMainViewModel().changeBG(pictureFacer.getPicturePath());
+
+                  bundle.putString("type","image");
+                  if(returnOrnot){
+                       getControler().popBackStack();
+                  }else{
+                      getControler().navigate(R.id.action_chooseBackgroundFragment_to_pasteFragment,bundle);
+                  }
+
               }
           });
           viewmodel.imageAssetAdapter.setCallback(new ImageCallback() {
@@ -68,8 +96,16 @@ public class ChooseBackgroundFragment extends BaseFragment<FragChooseBackgroundB
               public void onClickImage(PictureFacer pictureFacer) {
                   Toast.makeText(getActivity(), "Click :" + pictureFacer.getPicturePath(), Toast.LENGTH_SHORT).show();
                   Bundle bundle = new Bundle();
-                  bundle.putString("path",pictureFacer.getPicturePath());
-                  getControler().navigate(R.id.action_chooseBackgroundFragment_to_pasteFragment,bundle);
+               //   bundle.putString("path",pictureFacer.getPicturePath());
+                  // change path bg
+                  activity.getMainViewModel().changeBG(pictureFacer.getPicturePath());
+                  bundle.putString("type","assest");
+                  if(returnOrnot){
+                      getControler().popBackStack();
+                  }else{
+                      getControler().navigate(R.id.action_chooseBackgroundFragment_to_pasteFragment,bundle);
+                  }
+
               }
           });
     }

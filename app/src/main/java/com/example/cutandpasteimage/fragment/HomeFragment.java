@@ -63,7 +63,9 @@ public class HomeFragment extends BaseFragment<FragHomeBinding,HomeViewModel> {
        binding.btnGhepanh.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               getControler().navigate(R.id.action_homeFragment_to_chooseBackgroundFragment);
+               Bundle bundle = new Bundle();
+               bundle.putBoolean("return",false);
+               getControler().navigate(R.id.action_homeFragment_to_chooseBackgroundFragment,bundle);
            }
        });
     }

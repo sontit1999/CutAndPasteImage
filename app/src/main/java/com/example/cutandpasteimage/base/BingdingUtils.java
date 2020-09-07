@@ -34,7 +34,7 @@ public class BingdingUtils {
     }
     @BindingAdapter({"bind:imageAssest"})
     public static void loadImageAssestToview(ImageView view, String imageAssest) {
-        String assetPath =   imageAssest;
+        String assetPath =   "file:///android_asset/" + imageAssest;
         Glide.with(view.getContext())
                 .load(Uri.parse(assetPath))
                 .centerCrop()
