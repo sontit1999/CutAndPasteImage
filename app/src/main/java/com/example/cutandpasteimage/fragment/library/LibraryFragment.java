@@ -71,7 +71,8 @@ public class LibraryFragment extends BaseFragment<FragLibraryBinding,LibraryView
                 getControler().popBackStack();
             }
         });
-        viewmodel.getImage(getActivity());
+        viewmodel.getImage(getContext());
+
     }
 
 }
